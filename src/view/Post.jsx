@@ -16,7 +16,7 @@ function Post() {
      },[])
     
 return(
-<div className="p-3"><h1>{post.title}</h1>
+<div className="pad-black"><h1>{post.title}</h1>
 <p>{post.body}</p>
 </div>
 )
