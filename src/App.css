@@ -1,0 +1,99 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ */
+ .nav-background{
+  background-color: red;
+}
+.banner-background {
+  position:absolute;
+  filter: blur(4px);
+}
+.button1{
+  border: 2px solid green;
+}
+.button2{
+  border: 2px solid white;
+  color:white;
+  background-color: transparent;
+}
+.product-txt{
+  font-weight: 700;
+}
+.logo{
+  height: 30px; width:150px;
+}
+.footer-logo{
+  height: 30%;
+}
+.footer-block{
+  margin-left: 170px;
+}
+.footer-btn{
+  height: 50px;
+}
+.footer-bottom{
+  background-color: red;
+  height: 30px;
+}
+.banner-detail-1{
+  padding-top: 100px;
+  padding-bottom: 90px;
+  margin-bottom: -500px;
+}
+.banner-detail-2{
+  margin-top: 50px;
+}
+.banner2-detail{
+  padding-top: 60px;
+  padding-bottom: 90px;
+}
+.pos-abs{
+  position: absolute;
+}
+.pad-black{
+  padding: 10px;
+  border: 1px solid black;
+  margin: 10px;
+}
+.card-body-height{
+  height: 230px;
+}
+.ht-300{
+  height: 300px !important;
+}
