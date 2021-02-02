@@ -5,8 +5,20 @@ import ContactBanner2 from "../image/contact-banner-2.jpg"
 import { useForm } from "react-hook-form";
 
 function Contact() {
-  const { register, handleSubmit,errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => console.log(data);
+  let isPlaying = false
+  let isReading = false
+  function intrestChangeHandler(event) {
+    if (event.target.value == "playing") {
+      isPlaying = true
+      isReading = false
+    }
+    else {
+      isPlaying = false
+      isReading = true
+    }
+  }
   return (
     <>
       <Header />
@@ -53,74 +65,89 @@ function Contact() {
         </div>
         <div>
           <h2 className="text-center">Submission Form</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-group row">
-              <label className="col-sm-2 col-form-label">First Name</label>
-              <div className="col-sm-10">
-                <input type="text" name="first_name" ref={register({ required: true,minLength:3, maxLength: 20 })} className={"form-control "} placeholder="First Name" />
-                {errors&&errors.first_name&&<p className="text-danger"> First Name is required.</p>}
-              </div>
-            </div>
-            <div className="form-group row">
-              <label for="inputEmail3" className="col-sm-2 col-form-label">Last Name</label>
-              <div className="col-sm-10">
-                <input type="text" name="last_name" ref={register({ required: true,minLength:3, maxLength: 20 })} className="form-control" placeholder="Last Name" />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-              <div className="col-sm-10">
-                <input name="email" type="email" ref={register({ required: true})} className="form-control" placeholder="Email" />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label for="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-              <div className="col-sm-10">
-                <input type="password" name="password"  ref={register} className="form-control" id="inputPassword3" placeholder="Password" />
-              </div>
-            </div>
-            <fieldset className="form-group">
-              <div className="row">
-                <legend className="col-form-label col-sm-2 pt-0">Gender</legend>
+          <div className="row">
+            <div className="col-3"></div>
+
+            <form className=" col-6" onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">First Name</label>
                 <div className="col-sm-10">
-                  <div className="form-check">
-                    <input ref={register({ required: true })} className="form-check-input" type="radio" name="gender" value="male" checked />
-                    <label className="form-check-label" for="gridRadios1">
-                      Male
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input ref={register({ required: true })} className="form-check-input" type="radio" name="gender"  value="female" />
-                    <label className="form-check-label" for="gridRadios2">
-                      Female
-                    </label>
-                  </div>
-                 
+                  <input type="text" name="first_name" ref={register({ required: true, minLength: 3, maxLength: 20 })} className={`form-control  + ${errors && errors.first_name && "border-red"}`} placeholder="First Name" />
+                  {errors && errors.first_name && <p className="text-danger"> First Name is required.</p>}
                 </div>
               </div>
-            </fieldset>
-            <div className="form-group row">
-              <div className="col-sm-2">Intrest</div>
-              <div className="col-sm-10">
-                <div className="form-check">
-                  <select name="intrest" ref={register ({ required: true })} className="form-control">
-                    <option value="">--- Select Intrest---</option>
-                    <option value ="playing">Playing</option>
-                    <option value ="reading">Reading</option>
-                  </select>
+              <div className="form-group row">
+                <label for="inputEmail3" className="col-sm-2 col-form-label">Last Name</label>
+                <div className="col-sm-10">
+                  <input type="text" name="last_name" ref={register({ required: true, minLength: 3, maxLength: 20 })} className={`form-control  + ${errors && errors.first_name && "border-red"}`} placeholder="Last Name" />
+                  {errors && errors.last_name && <p className="text-danger"> Last Name is required.</p>}
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-            <div className="form-group row">
-              <div className="col-sm-10">
-                <button type="submit" className="btn btn-primary">Sign in</button>
+              <div className="form-group row">
+                <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+                <div className="col-sm-10">
+                  <input name="email" type="email" className={`form-control  + ${errors && errors.first_name && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Email" />
+                  {errors && errors.email && <p className="text-danger"> Enter the Email correct Format.</p>}
+                </div>
               </div>
-            </div>
-          </form>
+
+              <fieldset className="form-group">
+                <div className="row">
+                  <legend className="col-form-label col-sm-2 pt-0">Gender</legend>
+                  <div className="col-sm-10">
+                    <div className="form-check">
+                      <input ref={register({ required: true })} className="form-check-input" type="radio" name="gender" value="male" checked />
+                      <label className="form-check-label" for="gridRadios1">
+                        Male
+                    </label>
+                    </div>
+                    <div className="form-check">
+                      <input ref={register({ required: true })} className="form-check-input" type="radio" name="gender" value="female" />
+                      <label className="form-check-label" for="gridRadios2">
+                        Female
+                    </label>
+                      {errors && errors.gender && <p className="text-danger"> Please select the Gender.</p>}
+                    </div>
+
+                  </div>
+                </div>
+              </fieldset>
+              <div className="form-group row">
+                <div className="col-sm-2">Intrest</div>
+                <div className="col-sm-10">
+                  
+                    <select name="intrest" ref={register({ required: true })} className={`form-control  + ${errors && errors.first_name && "border-red"}`}>
+                      <option value="">--- Select Intrest---</option>
+                      <option value="playing">Playing</option>
+                      <option value="reading">Reading</option>
+                    </select>
+                    {errors && errors.intrest && <p className="text-danger"> Select the Intrest.</p>}
+                  
+                </div>
+              </div>
+              <div className="form-group row">
+                <label for="inputEmail3" className="col-sm-2 col-form-label">{isPlaying && "sports"}{isReading && "Books"}</label>
+                <div className="col-sm-10">
+                  {isPlaying && <input name="sports" type="text" ref={register({ required: true })} className="form-control" placeholder="sports" />}
+                  {isReading && <input name="books" type="text" ref={register({ required: true })} className="form-control" placeholder="sports" />}
+                  {errors && errors.sports && <p className="text-danger"> Enter the Email correct Format.</p>}
+                </div>
+              </div>
+              <div className="form-group row">
+                <div className="col-sm-2">
+                  <label for="exampleFormControlTextarea1">write about yourself</label></div>
+                <div className="col-sm-10">    <textarea className="form-control" ref={register({ required: true })} name="yourself" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  {errors && errors.yourself && <p className="text-danger"> yourself is required.</p>}
+                </div>
+              </div>
+              <div className="form-group row">
+                <div className="col-5"></div>
+                <div className="col-sm-2">
+                  <button type="submit" className="btn btn-primary">Register</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <Footer />
