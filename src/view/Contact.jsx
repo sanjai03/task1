@@ -79,14 +79,14 @@ function Contact() {
               <div className="form-group row">
                 <label for="inputEmail3" className="col-sm-2 col-form-label">Last Name</label>
                 <div className="col-sm-10">
-                  <input type="text" name="last_name" ref={register({ required: true, minLength: 3, maxLength: 20 })} className={`form-control  + ${errors && errors.first_name && "border-red"}`} placeholder="Last Name" />
+                  <input type="text" name="last_name" ref={register({ required: true, minLength: 3, maxLength: 20 })} className={`form-control  + ${errors && errors.last_name && "border-red"}`} placeholder="Last Name" />
                   {errors && errors.last_name && <p className="text-danger"> Last Name is required.</p>}
                 </div>
               </div>
               <div className="form-group row">
                 <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                 <div className="col-sm-10">
-                  <input name="email" type="email" className={`form-control  + ${errors && errors.first_name && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Email" />
+                  <input name="email" type="email" className={`form-control  + ${errors && errors.email && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Email" />
                   {errors && errors.email && <p className="text-danger"> Enter the Email correct Format.</p>}
                 </div>
               </div>
@@ -116,7 +116,7 @@ function Contact() {
                 <div className="col-sm-2">Intrest</div>
                 <div className="col-sm-10">
                   
-                    <select name="intrest" ref={register({ required: true })} className={`form-control  + ${errors && errors.first_name && "border-red"}`}>
+                    <select name="intrest" ref={register({ required: true })} className={`form-control  + ${errors && errors.intrest && "border-red"}`}>
                       <option value="">--- Select Intrest---</option>
                       <option value="playing">Playing</option>
                       <option value="reading">Reading</option>
@@ -136,7 +136,7 @@ function Contact() {
               <div className="form-group row">
                 <div className="col-sm-2">
                   <label for="exampleFormControlTextarea1">write about yourself</label></div>
-                <div className="col-sm-10">    <textarea className="form-control" ref={register({ required: true })} name="yourself" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <div className="col-sm-10">    <textarea className={`form-control ${errors && errors.intrest && "border-red"}`} ref={register({ required: true })} name="yourself" id="exampleFormControlTextarea1" rows="3"></textarea>
                   {errors && errors.yourself && <p className="text-danger"> yourself is required.</p>}
                 </div>
               </div>
