@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ContactBanner from "../image/contact-banner.jpg";
 import ContactBanner2 from "../image/contact-banner-2.jpg";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 function Contact() {
   const { register, handleSubmit, errors,watch } = useForm();
@@ -119,7 +120,7 @@ function Contact() {
                 <label for="inputEmail3" className="col-sm-2 col-form-label">Favorite Sport</label>
                 <div className="col-sm-10">
                   <input name="favorite_sport" type="text" className={`form-control  ${errors && errors.favorite_sport && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Favorite Sport" />
-                  {errors && errors.favorite_sport && <p className="text-danger"> Favorite Book is Required.</p>}
+                  {errors && errors.favorite_sport && <p className="text-danger"> Favorite Sport is Required.</p>}
                 </div>
               </div>}
               {watchIntrest=='reading'&&<div className="form-group row">
