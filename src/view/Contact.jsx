@@ -1,24 +1,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ContactBanner from "../image/contact-banner.jpg"
-import ContactBanner2 from "../image/contact-banner-2.jpg"
+import ContactBanner from "../image/contact-banner.jpg";
+import ContactBanner2 from "../image/contact-banner-2.jpg";
 import { useForm } from "react-hook-form";
 
 function Contact() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors,watch } = useForm();
   const onSubmit = data => console.log(data);
-  let isPlaying = false
-  let isReading = false
-  function intrestChangeHandler(event) {
-    if (event.target.value == "playing") {
-      isPlaying = true
-      isReading = false
-    }
-    else {
-      isPlaying = false
-      isReading = true
-    }
-  }
+  const watchIntrest = watch("intrest");
+  
   return (
     <>
       <Header />
@@ -86,7 +76,7 @@ function Contact() {
               <div className="form-group row">
                 <label for="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                 <div className="col-sm-10">
-                  <input name="email" type="email" className={`form-control  + ${errors && errors.email && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Email" />
+                  <input name="email" type="text" className={`form-control  ${errors && errors.email && "border-red"}`} ref={register({ required: true, pattern: {value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i} })} placeholder="Email" />
                   {errors && errors.email && <p className="text-danger"> Enter the Email correct Format.</p>}
                 </div>
               </div>
@@ -125,14 +115,20 @@ function Contact() {
                   
                 </div>
               </div>
-              <div className="form-group row">
-                <label for="inputEmail3" className="col-sm-2 col-form-label">{isPlaying && "sports"}{isReading && "Books"}</label>
+             {watchIntrest=='playing'&&<div className="form-group row">
+                <label for="inputEmail3" className="col-sm-2 col-form-label">Favorite Sport</label>
                 <div className="col-sm-10">
-                  {isPlaying && <input name="sports" type="text" ref={register({ required: true })} className="form-control" placeholder="sports" />}
-                  {isReading && <input name="books" type="text" ref={register({ required: true })} className="form-control" placeholder="sports" />}
-                  {errors && errors.sports && <p className="text-danger"> Enter the Email correct Format.</p>}
+                  <input name="favorite_sport" type="text" className={`form-control  ${errors && errors.favorite_sport && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Favorite Sport" />
+                  {errors && errors.favorite_sport && <p className="text-danger"> Favorite Book is Required.</p>}
                 </div>
-              </div>
+              </div>}
+              {watchIntrest=='reading'&&<div className="form-group row">
+                <label for="inputEmail3" className="col-sm-2 col-form-label">Favorite Book</label>
+                <div className="col-sm-10">
+                  <input name="favorite_book" type="email" className={`form-control  ${errors && errors.favorite_book && "border-red"}`} ref={register({ required: true, pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" })} placeholder="Favorite Book" />
+                  {errors && errors.favorite_book && <p className="text-danger"> Favorite Book is Required.</p>}
+                </div>
+              </div>}
               <div className="form-group row">
                 <div className="col-sm-2">
                   <label for="exampleFormControlTextarea1">write about yourself</label></div>
